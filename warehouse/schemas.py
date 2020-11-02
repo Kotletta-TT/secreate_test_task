@@ -22,6 +22,10 @@ class ProductUpdate(BaseModel):
     reserve: int = Query(None)
 
 
+class ProductsUpdate(BaseModel):
+    id: int
+
+
 class Product(ProductBase):
     id: int
     name: str
