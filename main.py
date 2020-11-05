@@ -1,14 +1,17 @@
 from typing import List
 
 from fastapi import FastAPI, Depends, HTTPException
+from smart_env.env import ENV
 from sqlalchemy.orm import Session
 
 from warehouse import schemas, crud
-from warehouse.database import SessionLocal
+from warehouse.database import SessionLocal, Base, engine
 from warehouse.schemas import Product, Category
 
 app = FastAPI()
 
+if ENV.TEST:
+    Base.metadata.create_all(engine)
 
 def get_db():
     db = SessionLocal()
